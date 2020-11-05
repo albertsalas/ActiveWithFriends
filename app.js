@@ -1,3 +1,5 @@
+
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -8,6 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+
+var mysql = require('mysql');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,5 +41,26 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
 module.exports = app;
+
+
+// This will make a user variable available in all your templates.
+app.use(function(req, res, next) {
+	res.locals.user = req.session.user;
+	next();
+});
+
+app.use(session({
+	secret: 'top secret code!',
+	resave: true,
+	saveUninitialized: true
+}));
+
+//DB connections
+var connection = mysql.createPool({
+  host: "",
+  user: "",
+  password: "",
+  database: ""
+}); 
+module.exports = connection;
