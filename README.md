@@ -10,6 +10,8 @@
 3. Make sure you have installed all dependencies
 
     ```npm install```
+    
+    (If adding a new package, use ```npm install <package_name> --save```)
 4. Checkout to your branch
 
     ```git checkout my_branch```
