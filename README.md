@@ -11,7 +11,7 @@
 
     ```npm install```
     
-    (If adding a new package, use ```npm install <package_name> --save```)
+    (If adding a new package, use ```npm install <package_name> --save-prod```)
     
 4. Add your changes
 
