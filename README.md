@@ -4,23 +4,19 @@
 1. Switch to main branch 
     
     ```git checkout main```
-2. Make sure your main branch is up to date
+2. Make sure your branch is up to date with main
 
-    ```git pull```
+    ```git pull origin main```
 3. Make sure you have installed all dependencies
 
     ```npm install```
     
     (If adding a new package, use ```npm install <package_name> --save```)
-4. Checkout to your branch
-
-    ```git checkout my_branch```
     
-    If it doesn't exist, then use the ```-b``` option to create a new one
-5. Add your changes
+4. Add your changes
 
     ```git add .```
-6. Commit your changes, choose a meaningful title and description of your commit
+5. Commit your changes, choose a meaningful title and description of your commit
 
     ```git commit```
     
@@ -28,11 +24,11 @@
     
         Commit title
         Description of my commit
-7. Push your changes to your remote branch
+6. Push your changes to your remote branch
 
     ```git push origin my_branch```
-8. After pushing, check your branch on Github and create a pull request
-9. Ask someone to review your code
-10. After someone approves your PR (pull request), merge your branch to main and wait for
+7. After pushing, check your branch on Github and create a pull request
+8. Ask someone to review your code
+9. After someone approves your PR (pull request), merge your branch to main and wait for
 it to pass through the CI/CD pipeline (check the environments link for deployment)
-11. Verify your changes on the live website, and you're done!
+10. Verify your changes on the live website, and you're done!
