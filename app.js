@@ -7,7 +7,7 @@ const dotenv = require("dotenv")
 dotenv.config();
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var usersRouter = require('./routes/UsersRouter');
 var registerRouter = require('./routes/registration');
 var app = express();
 
