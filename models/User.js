@@ -1,4 +1,4 @@
-// const connection = require('../connection.js');
+const connection = require('../connection.js');
 
 /**
  * @param user
@@ -38,3 +38,5 @@ User.update = (user, result) => {
 User.delete = (user, result) => {
 
 }
+
+module.exports = User;
