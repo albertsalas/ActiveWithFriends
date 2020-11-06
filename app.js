@@ -4,6 +4,7 @@ var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
+var session = require('express-session')
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
@@ -41,8 +42,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-module.exports = app;
-
 
 // This will make a user variable available in all your templates.
 app.use(function(req, res, next) {
@@ -55,12 +54,4 @@ app.use(session({
 	resave: true,
 	saveUninitialized: true
 }));
-
-//DB connections
-var connection = mysql.createPool({
-  host: "",
-  user: "",
-  password: "",
-  database: ""
-}); 
-module.exports = connection;
+module.exports = app;
