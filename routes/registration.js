@@ -3,7 +3,7 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Active With Friends' });
+  res.render('registration', { title: 'Express' });
 });
 
 module.exports = router;
