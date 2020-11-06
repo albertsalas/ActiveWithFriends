@@ -1,0 +1,44 @@
+<!-- <section class="section"> -->
+    <!-- <div class="container"> -->
+
+<div class="modal" >
+  <div class="modal-background is-black" ></div>
+  <div class="modal-card">
+    <header class="modal-card-head" style="text-align: center; background-color: rgb(32, 197, 181);">
+      <p class="modal-card-title" style="font-size: 2em; color: white;">Register</p>
+    </header>
+    <section class="modal-card-body" style="background-color: turquoise; color:black;">
+      Email<br><input type="text"><br>
+      Password<br><input type="text"><br>
+      <input type="checkbox" name="" id="">Subscribe to our mailing list for news on major updates, promotional events, and order notifications.<br>
+      <input type="checkbox" name="" id=""><a href="#">User Agreement</a>
+    </section>
+    <footer class="modal-card-foot" style="background-color: rgb(64, 224, 208);">
+        <div style="margin: 0 auto;">
+            <button class="button is-success">Register</button>
+
+        </div>
+    </footer>
+  </div>
+</div>
+      
+     
+    <!-- </div> -->
+  <!-- </section> -->
+
+
+  <script>
+    $("#register").on('click', function(){
+        $(".modal").addClass("is-active");
+    });
+    $(".delete").on('click', function(){
+        $(".modal").removeClass("is-active");
+    });
+    if($("modal").hasClass("is-active")){
+
+    }
+    
+    $(".modal-background").click(function() {
+        $(".modal").removeClass("is-active");
+    });
+  </script>
