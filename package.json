@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "bulma": "^0.9.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
@@ -20,6 +21,7 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "node": "^14.13.0",
+    "node-sass": "^5.0.0",
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.6",
     "session": "^0.1.0"
@@ -28,8 +30,5 @@
   "main": "app.js",
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "bulma": "^0.9.1",
-    "node-sass": "^5.0.0"
-  }
+  "devDependencies": {}
 }
