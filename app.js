@@ -8,6 +8,7 @@ dotenv.config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/UsersRouter');
+var activitiesRouter = require('./routes/ActivitiesRouter');
 var registerRouter = require('./routes/registration');
 var app = express();
 
@@ -36,6 +37,7 @@ app.use(function(req, res, next) {
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/activities', activitiesRouter);
 app.use('/register', registerRouter);
 
 module.exports = app;

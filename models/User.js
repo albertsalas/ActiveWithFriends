@@ -1,4 +1,4 @@
-const connection = require('../connection.js');
+const query = require('../private/query');
 
 /**
  * @param user
@@ -12,31 +12,33 @@ const User = function (user) {
 }
 
 User.findAll = (result) => {
-
+    query("SELECT * FROM User", "", (error, res) => {
+        result(error, res);
+    });
 }
 
-User.find = (username, result) => {
-
+User.find = (user_id, result) => {
+    query("SELECT * FROM User WHERE id = ?", user_id, (error, res) => {
+        result(error, res);
+    });
 }
 
 User.create = (user, result) => {
-    // connection.query("INSERT INTO User SET ?", user, (err, res) => {
-    //     if (err) {
-    //         console.log("error: ", err);
-    //         result(err, null);
-    //         return;
-    //     }
-    //     console.log("created user: ", {username: res.username, ...user});
-    //     result(null, {username: res.username, ...user});
-    // });
+    query("INSERT INTO User SET ?", user, (error, res) => {
+        result(error, res);
+    });
 }
 
 User.update = (user, result) => {
-
+    query("UPDATE User SET ? WHERE ?", user, (error, res) => {
+        result(error, res);
+    });
 }
 
 User.delete = (user, result) => {
-
+    query("DELETE FROM User WHERE ?", user, (error, res) => {
+        result(error, res);
+    });
 }
 
 module.exports = User;
