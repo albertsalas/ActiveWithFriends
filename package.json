@@ -7,7 +7,7 @@
     "css-watch": "npm run css-build -- --watch",
     "start-app": "nodemon ./bin/www",
     "test": "npm rebuild node-sass-middleware",
-    "start": "npm run start-app "
+    "start": "npm run start-app"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -22,7 +22,6 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "node": "^14.13.0",
-    "node-sass": "^5.0.0",
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.6",
     "session": "^0.1.0"
