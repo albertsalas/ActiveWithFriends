@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "css-build": "node-sass --omit-source-map-url public/sass/mystyles.scss public/css/mystyles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "start-app": "nodemon ./bin/www",
+    "start": "npm run start-app && npm run css-watch"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -17,11 +20,16 @@
     "morgan": "~1.9.1",
     "mysql": "^2.18.1",
     "node": "^14.13.0",
+    "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.6",
     "session": "^0.1.0"
   },
   "description": "",
   "main": "app.js",
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "bulma": "^0.9.1",
+    "node-sass": "^5.0.0"
+  }
 }
