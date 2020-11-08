@@ -1,45 +1,48 @@
 const User = require("../models/User.js");
+const response = require("../private/response");
+const validRequest = require("../private/validRequest");
 
 exports.findAll = (req, res) => {
-
+    User.findAll((error, data) => {
+        response("users", "", data, error, res);
+    });
 }
 
 exports.find = (req, res) => {
-
+    User.find(req.params.id, (error, data) => {
+        response("user", req.params, data, error, res);
+    });
 }
 
 exports.create = (req, res) => {
-    console.log(req.body);
-    if (!req.body) {
-        res.status(400).send({
-            message: "Content cannot be empty!"
-        });
-    }
-
-    const user = new User({
-        username: req.body.username,
-        password: req.body.password,
-        firstName: req.body.firstName,
-        lastName: req.body.lastName
-    });
+    var user = new User(req.body);
+    if (!validRequest(user, res)) return;
 
     User.create(user, (error, data) => {
-        if (error) {
-            res.render('register', {err: true});
-            // res.status(500).send({
-            //     message: err.message || "Error while creating user."
-            // });
-        } else {
-            // res.send(data);
-            res.redirect('login');
-        }
+        response("user", req.body, data, error, res);
     });
 };
 
 exports.update = (req, res) => {
+    var user_id = req.body.id;
+    var user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name
+    });
 
+    if (!validRequest(Object.assign({id: user_id}, user), res)) return;
+
+    User.update([user, {id: user_id}], (error, data) => {
+        response("user", req.body, data, error, res);
+    });
 }
 
 exports.delete = (req, res) => {
+    if (!validRequest(req.body.id, res)) return;
 
+    User.delete({id: req.body.id}, (error, data) => {
+        response("user", req.body, data, error, res);
+    });
 }
