@@ -6,4 +6,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Active With Friends' });
 });
 
+
+
+
 module.exports = router;
