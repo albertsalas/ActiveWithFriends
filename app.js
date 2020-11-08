@@ -38,6 +38,6 @@ app.use(function(req, res, next) {
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/activities', activitiesRouter);
-app.use('/register', registerRouter);
+app.use('/', registerRouter);
 
 module.exports = app;
