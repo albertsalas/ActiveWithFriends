@@ -10,11 +10,11 @@
     </header>
     <section class="modal-card-body grad" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
       <!-- POST FORM -->
-      <form action="/signup" method="post">
+      <!-- <form action="/signup" method="post"> -->
         <!-- USER NAME -->
         <div class="field">
           <p class="control has-icons-left has-icons-right">
-            <input class="input" type="username" name="username" placeholder="User Name">
+            <input class="input" type="username" name="username" placeholder="User Name" id="u">
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -26,7 +26,7 @@
         <!-- PASSWORD -->
         <div class="field">
           <p class="control has-icons-left">
-            <input class="input" type="password" name="password" placeholder="Password">
+            <input class="input" type="password" name="password" placeholder="Password" id="p">
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
@@ -35,13 +35,13 @@
         <!-- FIRST NAME -->
         <div class="field">
           <div class="control">
-            <input class="input" type="text" name="fname" placeholder="First Name">
+            <input class="input" type="text" name="fname" placeholder="First Name" id="f">
           </div>
         </div>
         <!-- LAST NAME -->
         <div class="field">
           <div class="control">
-            <input class="input" type="text" name="lname" placeholder="Last Name">
+            <input class="input" type="text" name="lname" placeholder="Last Name" id="l">
           </div>
         </div>
         <!-- CHECK BOX -->
@@ -51,9 +51,9 @@
         </label>
         <br> <br>
         <div class="columns is-centered is-mobile">
-          <button class="button is-white is-outlined" id="s2Button"><strong>Sign Up</strong></button>
+          <button class="button is-white is-outlined" id="signupBtn"><strong>Sign Up</strong></button>
         </div>
-      </form>
+      <!-- </form> -->
      
       
     </section>
@@ -79,4 +79,31 @@
     $(".modal-background").click(function() {
         $(".modal").removeClass("is-active");
     });
+
+    $("#signupBtn").on('click', function(){
+      let un = $("#u").val();
+      let pw = $("#p").val();
+      let fn = $("#f").val();
+      let ln = $("#l").val();
+      createUser(un,pw,fn,ln);
+    });
+
+    function createUser(un, pw, fname, lname){
+      let user = {
+        username: un,
+        password: pw,
+        first_name: fname,
+        last_name: lname
+      }
+      $.ajax({
+        type:'post',
+        url:'/signup',
+        contentType: 'application/json',
+        data: JSON.stringify(user),
+        success: function(){
+
+        },
+          
+      });
+    }
   </script>

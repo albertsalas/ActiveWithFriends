@@ -9,22 +9,23 @@ $p2:#00ada7;
 $brown: #757763;
 $beige-light: #D0D1CD;
 $beige-lighter: #EFF0EB;
-
+$mainGreen: #a1e0a9;
 // Update Bulma's global variables
 $family-sans-serif: "Nunito", sans-serif;
 $grey-dark: $brown;
 $grey-light: $beige-light;
 $primary: $p1;
-$link: $p2;
+$link: black;
 $widescreen-enabled: false;
 $fullhd-enabled: false;
 
 // Update some of Bulma's component variables
-$body-background-color: $beige-lighter;
+$body-background-color: $mainGreen;
 $control-border-width: 2px;
 $input-border-color: transparent;
-$input-shadow: none;
-
+$input-shadow: none; 
+$navbar-dropdown-background-color: $p1;
+$navbar-divider-background-color:	$p2;
 // Import only what you need from Bulma
 @import "../../node_modules/bulma/sass/utilities/_all.sass";
 @import "../../node_modules/bulma/sass/base/_all.sass";
@@ -33,3 +34,4 @@ $input-shadow: none;
 @import "../../node_modules/bulma/sass/components/_all.sass";
 @import "../../node_modules/bulma/sass/layout/hero.sass";
 @import "../../node_modules/bulma/sass/layout/section.sass";
+@import "../../node_modules/bulma/sass/grid/_all.sass";
