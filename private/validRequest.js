@@ -6,7 +6,7 @@
  */
 module.exports = (request, response) => {
     var errors = checkRequestForErrors(request);
-    if (!request || errors) {
+    if (!request || errors.length === 0) {
         response.status(400).send({error: errors})
         return false;
     }
