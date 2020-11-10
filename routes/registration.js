@@ -9,6 +9,6 @@ const user = require('../controllers/UserController')
 
 router.post('/signup', user.create);
 
-router.get('/check', user.find);
+router.get('/check/:username', user.findByUsername);
 
 module.exports = router;

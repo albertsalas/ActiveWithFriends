@@ -23,6 +23,13 @@ User.find = (user_id, result) => {
     });
 }
 
+//name availability query
+User.findByUsername = (username, result) => {
+    query("SELECT * FROM User WHERE username = ?", username, (error, res) => {
+        result(error, res);
+    });
+}
+
 User.create = (user, result) => {
     query("INSERT INTO User SET ?", user, (error, res) => {
         result(error, res);

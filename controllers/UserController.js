@@ -14,6 +14,22 @@ exports.find = (req, res) => {
     });
 }
 
+// using to check for username availability
+exports.findByUsername = (req, res) => {
+    
+    User.findByUsername(req.params.username, (error, data) => {
+        if(data != undefined){
+           if(data.length > 0){
+               res.send(true)
+           }
+           else{
+               res.send(false)
+           }
+        } 
+        // response("user", req.params, data, error, res);
+    });
+}
+
 exports.create = (req, res) => {
     var user = new User(req.body);
     if (!validRequest(user, res)) return;
