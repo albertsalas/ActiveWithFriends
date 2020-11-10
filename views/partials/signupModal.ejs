@@ -10,38 +10,40 @@
     </header>
     <section class="modal-card-body grad" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
       <!-- POST FORM -->
-      <form action="/signup" method="post">
+      <!-- <form action="/signup" method="post"> -->
         <!-- USER NAME -->
-        <div class="field">
+        <div class="field" id="usernameField">
           <p class="control has-icons-left has-icons-right">
-            <input class="input" type="username" name="username" placeholder="User Name">
+            <input class="input" type="username" name="username" placeholder="User Name" id="u">
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
             <span class="icon is-small is-right">
-              <i class="fas fa-check"></i>
+              <i class="fas fa-check" id="usernameIcon"></i>
             </span>
           </p>
+          <p class="help" id="usernameHelper"></p>
         </div>
         <!-- PASSWORD -->
         <div class="field">
           <p class="control has-icons-left">
-            <input class="input" type="password" name="password" placeholder="Password">
+            <input class="input" type="password" name="password" placeholder="Password" id="p">
             <span class="icon is-small is-left">
               <i class="fas fa-lock"></i>
             </span>
           </p>
+          <p class="help is-success"></p>
         </div>
         <!-- FIRST NAME -->
         <div class="field">
           <div class="control">
-            <input class="input" type="text" name="fname" placeholder="First Name">
+            <input class="input" type="text" name="fname" placeholder="First Name" id="f">
           </div>
         </div>
         <!-- LAST NAME -->
         <div class="field">
           <div class="control">
-            <input class="input" type="text" name="lname" placeholder="Last Name">
+            <input class="input" type="text" name="lname" placeholder="Last Name" id="l">
           </div>
         </div>
         <!-- CHECK BOX -->
@@ -51,9 +53,9 @@
         </label>
         <br> <br>
         <div class="columns is-centered is-mobile">
-          <button class="button is-white is-outlined" id="s2Button"><strong>Sign Up</strong></button>
+          <button class="button is-white is-outlined" id="signupBtn"><strong>Sign Up</strong></button>
         </div>
-      </form>
+      <!-- </form> -->
      
       
     </section>
@@ -66,6 +68,7 @@
 
 
   <script>
+
     $("#register").on('click', function(){
         $(".modal").addClass("is-active");
     });
@@ -79,4 +82,95 @@
     $(".modal-background").click(function() {
         $(".modal").removeClass("is-active");
     });
+
+ 
+  
+
+    // $("#u").keyup(function(){
+
+    //   if($(this).val().length == 0){
+    //     // $("#u").removeClass("is-danger");
+    //     // $("#u").removeClass("is-success");
+    //     // $("#usernameHelper").removeClass("is-danger");
+    //     // $("#usernameHelper").removeClass("is-success");
+    //     // $("#usernameHelper").html("");
+    //     // $("#usernameIcon").removeClass("fa-exclamation-triangle");
+    //     // $(".fa-check").css("color", "");
+    //   }
+    //   else{
+    //     usernameCheck($(this).val());
+    //   }
+      
+    // });
+
+    $("#u").on('change', function(){
+        usernameCheck($(this).val());
+
+    });
+
+    function usernameCheck(username){
+      $.ajax({
+        type:'GET',
+        url:'/check/'+username,
+        contentType: 'application/json',
+        data: {},
+        success: function(data){
+          console.log(data)
+          let temp = data;
+          if(temp){
+            $("#u").addClass("is-danger");
+            $("#u").removeClass("is-success");
+            $("#usernameHelper").addClass("is-danger");
+            $("#usernameHelper").removeClass("is-success");
+            $("#usernameHelper").html("This username is unavailable");
+            $("#usernameIcon").addClass("fa-exclamation-triangle");
+            $("#usernameIcon").removeClass("fa-check")
+            $(".fa-exclamation-triangle").css("color", "red");
+
+          }
+          else{
+            $("#u").addClass("is-success");
+            $("#u").removeClass("is-danger");
+            $("#usernameHelper").addClass("is-success");
+            $("#usernameHelper").removeClass("is-danger");
+            $("#usernameHelper").html("This username is available");
+            $("#usernameIcon").removeClass("fa-exclamation-triangle");
+            $("#usernameIcon").addClass("fa-check")
+            $(".fa-check").css("color", "green");
+            finalize();
+          }
+        },
+      });
+    }
+
+    
+    function finalize(){
+      $("#signupBtn").on('click', function(){
+        let username = $("#u").val();
+        let password = $("#p").val();
+        let fname = $("#f").val();
+        let lname = $("#l").val();
+        createUser(username,password,fname,lname);
+
+      })
+    }
+
+    function createUser(username, password, fname, lname){
+      let user = {
+        username: username,
+        password: password,
+        first_name: fname,
+        last_name: lname
+      }
+      $.ajax({
+        type:'post',
+        url:'/signup',
+        contentType: 'application/json',
+        data: JSON.stringify(user),
+        success: function(){
+          $(".modal").removeClass("is-active");
+        },
+          
+      });
+    }
   </script>

@@ -7,7 +7,7 @@
     "css-watch": "npm run css-build -- --watch",
     "start-app": "nodemon ./bin/www",
     "test": "npm rebuild node-sass-middleware",
-    "start": "npm run start-app "
+    "start": "npm run start-app"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
