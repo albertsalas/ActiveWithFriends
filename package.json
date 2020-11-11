@@ -6,7 +6,7 @@
     "css-build": "node-sass --omit-source-map-url public/sass/mystyles.scss public/css/mystyles.css",
     "css-watch": "npm run css-build -- --watch",
     "start-app": "nodemon ./bin/www",
-    "test": "npm rebuild node-sass-middleware",
+    "test-sass": "npm rebuild node-sass-middleware",
     "start": "npm run start-app"
   },
   "dependencies": {
