@@ -12,6 +12,7 @@ var usersRouter = require('./routes/UsersRouter');
 var activitiesRouter = require('./routes/ActivitiesRouter');
 var registerRouter = require('./routes/registration');
 var discoverRouter = require('./routes/discover');
+var loginRouter = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -54,5 +55,6 @@ app.use('/users', usersRouter);
 app.use('/activities', activitiesRouter);
 app.use('/', registerRouter);
 app.use('/discover', discoverRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;
