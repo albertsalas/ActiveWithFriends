@@ -47,6 +47,7 @@ app.use(session({
 // This will make a user variable available in all your templates.
 app.use(function(req, res, next) {
     res.locals.user = req.session.user;
+    res.locals.loggedin = req.session.loggedin;
     next();
 });
 
