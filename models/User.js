@@ -30,13 +30,6 @@ User.findByUsername = (username, result) => {
     });
 }
 
-User.findByActive = (result) => {
-    query("SELECT * FROM User WHERE Active = '1'", (error, res) => {
-        result(error, res);
-    });
-}
-
-
 User.create = (user, result) => {
     query("INSERT INTO User SET ?", user, (error, res) => {
         result(error, res);
