@@ -30,21 +30,6 @@ exports.findByUsername = (req, res) => {
     });
 }
 
-// There should be only be 1 active(logged in) user.
-exports.findByActive = (req, res) => {
-
-    User.findByActive("?", (error, data) =>{
-        if(data.length == 0){
-            res.send(false)
-        }
-        else if(data.length > 1){
-            res.send(false)
-        }
-        else if(data.length == 1){
-            res.send(true)
-        }
-    })
-}
 
 exports.create = (req, res) => {
     var user = new User(req.body);
