@@ -20,7 +20,7 @@ router.post('/', function(req, res){
 	User.findByUsername(req.body.username, (err, data) => {
 		if(!err && data.length === 1){
 			if(req.body.password === data[0].password){
-				req.session.loggedin = true;
+				req.session.loggedIn = true;
 				req.session.username = req.body.username;
 				req.session.userId = data[0].id;
 				res.redirect('/');

@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/albertsalas/ActiveWithFriends.svg?branch=main)](https://travis-ci.com/albertsalas/ActiveWithFriends)
 # ActiveWithFriends
 
 ## Instructions for pushing code

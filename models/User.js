@@ -12,7 +12,7 @@ const User = function (user) {
 }
 
 User.findAll = (result) => {
-    query("SELECT * FROM User", "", (error, res) => {
+    query("SELECT id, username, first_name, last_name FROM User", "", (error, res) => {
         result(error, res);
     });
 }
