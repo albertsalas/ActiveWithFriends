@@ -39,8 +39,8 @@ var query = (sql, values, next) => {
         }
     });
     connection.query(sql, values, function (error) {
-        console.log("sql: ", sql);
-        console.log("values: ", values);
+        // console.log("sql: ", sql);
+        // console.log("values: ", values);
         connection.end();
         if (error) {
             throw error;
