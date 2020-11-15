@@ -26,6 +26,7 @@ module.exports = (resource, request, query_response, error, response) => {
             var putOrDelete = "deleted";
             // check if the query_response has a message because only updates
             // have messages. Probably not the best way to do this.
+            // TODO: use changedRows
             if (query_response.message) {
                 putOrDelete = "updated"
             }

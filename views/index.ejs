@@ -1,28 +1,37 @@
 <%- include('./partials/header.ejs') %>
 <!-- <link rel="stylesheet" href="/css/mystyles.css"> -->
 <!-- style="background-color: turquoise;" -->
-<div class="hero is-primary" >
-    <%- include('./partials/nav.ejs')  %> 
+<div class="hero is-primary">
+    <%- include('./partials/nav.ejs') %>
     <div class="hero-body" style="background-color: rgb(21, 132, 121);">
         <div class="container" style="text-align: center;">
             <h1 class="title">
-              Active With Friends
+                Active With Friends
             </h1>
             <h2 class="subtitle">
-              etc...
+                etc...
             </h2>
         </div>
     </div>
 
     <section class="section">
         <div class="container">
-          <h1 class="title">Section</h1>
-          <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-          </h2>
+            <h1 class="title">Section</h1>
+            <h2 class="subtitle">
+                A simple container to divide your page into <strong>sections</strong>, like the one you're currently
+                reading
+            </h2>
         </div>
     </section>
-  </div>
+</div>
+
+<% if (loggedIn) { %>
+    <script>
+        var username = '<%- username %>'
+        var userId = `<%- userId %>`
+    </script>
+    <%- include('./partials/chat.ejs') %>
+<% } %>
 
 <%- include('./partials/footer.ejs') %>
 

@@ -20,6 +20,9 @@ app.set('port', port);
  */
 
 var server = http.createServer(app);
+var socketApi = require("../private/socket");
+var io = socketApi.io;
+io.attach(server);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -88,3 +91,4 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
