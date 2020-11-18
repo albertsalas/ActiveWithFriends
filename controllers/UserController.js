@@ -30,6 +30,7 @@ exports.findByUsername = (req, res) => {
     });
 }
 
+
 exports.create = (req, res) => {
     var user = new User(req.body);
     if (!validRequest(user, res)) return;

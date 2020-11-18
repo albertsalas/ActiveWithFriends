@@ -9,9 +9,11 @@ var sass = require('node-sass-middleware');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/UsersRouter');
+var messagesRouter = require('./routes/MessagesRouter');
 var activitiesRouter = require('./routes/ActivitiesRouter');
 var registerRouter = require('./routes/registration');
 var discoverRouter = require('./routes/discover');
+var loginRouter = require('./routes/login');
 var app = express();
 
 // view engine setup
@@ -45,14 +47,18 @@ app.use(session({
 
 // This will make a user variable available in all your templates.
 app.use(function(req, res, next) {
-    res.locals.user = req.session.user;
+    res.locals.username = req.session.username;
+    res.locals.loggedIn = req.session.loggedIn;
+    res.locals.userId = req.session.userId;
     next();
 });
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/activities', activitiesRouter);
+app.use('/messages', messagesRouter);
 app.use('/', registerRouter);
 app.use('/discover', discoverRouter);
+app.use('/login', loginRouter);
 
 module.exports = app;
