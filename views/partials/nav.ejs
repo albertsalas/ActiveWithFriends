@@ -50,6 +50,7 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
+            <% if (!loggedIn) { %>
             <a href = "/profile">
               <img src = "img/profile_icon.png">
             </a>
@@ -59,6 +60,13 @@
             <a class="button is-dark" style="background-color:#a1e0a9;" id="login" href="../login">
               <strong>Sign In</strong>
             </a>
+            <% } else { %>
+              <form action="/logout" method="POST">
+                <button class="button iswhite is-outlined" type="submit" id="logout">
+                  <strong>Logout</strong>
+                </button>
+              </form>
+            <% } %>
           </div>
         </div>
       </div>
@@ -74,4 +82,5 @@
       $(".navbar-menu").toggleClass("is-active");
       // $("#register").css("background-color", "turquoise")
     });
+
   </script>

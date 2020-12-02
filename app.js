@@ -14,6 +14,7 @@ var activitiesRouter = require('./routes/ActivitiesRouter');
 var registerRouter = require('./routes/registration');
 var discoverRouter = require('./routes/discover');
 var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
 var profileRouter = require('./routes/profile');
 var app = express();
 
@@ -61,6 +62,7 @@ app.use('/messages', messagesRouter);
 app.use('/', registerRouter);
 app.use('/discover', discoverRouter);
 app.use('/login', loginRouter);
+app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
 
 module.exports = app;
