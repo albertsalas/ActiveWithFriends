@@ -1,3 +1,9 @@
+#messages {
+  overflow: scroll;
+  overflow: -moz-scrollbars-none; }
+  #messages::-webkit-scrollbar {
+    width: 0 !important; }
+
 .activeChat {
   display: none; }
 
@@ -25,7 +31,7 @@
   position: fixed;
   transform: translateX(-50%);
   bottom: 0;
-  right: 0;
+  left: 25%;
   box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.5);
   transition: 0.3s ease; }
   .wrapper .inner {
@@ -166,7 +172,8 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  margin: 10.66667px 0; }
+  margin: 10.66667px 0;
+  padding: 10.66667px 0; }
   .message-wrapper .circle-wrapper {
     height: 42.66667px;
     width: 42.66667px;

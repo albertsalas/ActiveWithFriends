@@ -146,6 +146,13 @@ max-width: 200px;
 
 </script>
 
+<% if (loggedIn) { %>
+  <script>
+    var username = '<%- username %>'
+    var userId = `<%- userId %>`
+  </script>
+  <%- include('./partials/chat.ejs') %>
+<% } %>
 
 
 

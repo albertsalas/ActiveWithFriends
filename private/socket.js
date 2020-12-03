@@ -11,10 +11,9 @@ io.on("connection", (socket) => {
         userSocketIds[userId] = socket.id;
     });
 
-    // TODO: add functionality for when a user is offline
     socket.on("send", (data) => {
-        let receiverId = userSocketIds[data.receiver];
-        socket.broadcast.to(receiverId).emit("incoming", data);
+        let receiver_id = userSocketIds[data.receiver_id];
+        socket.broadcast.to(receiver_id).emit("incoming", data);
     });
 });
 
