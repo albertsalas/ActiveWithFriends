@@ -115,7 +115,8 @@ h3, p{
     },
     properties: {
       title: 'Mapbox',
-      description: 'Washington, D.C.'
+      description: 'Washington, D.C.',
+      eventID: 1
     }
   },
   {
@@ -126,7 +127,8 @@ h3, p{
     },
     properties: {
       title: 'Mapbox',
-      description: 'San Francisco, California'
+      description: 'San Francisco, California',
+      eventID: 2
     }
   }]
 };
@@ -138,7 +140,8 @@ geojson.events.push({
     },
     properties: {
       title: 'Mapbox',
-      description: 'Washington, D.C.'
+      description: 'Washington, D.C.',
+      eventID:3
     }
 })
 geojson.events.forEach(function(marker) {
@@ -146,12 +149,16 @@ geojson.events.forEach(function(marker) {
 // create a HTML element for each feature
 var el = document.createElement('div');
 el.className = 'marker';
+el.addEventListener('click', function(e){
+    // Prevent the `map.on('click')` from being triggered
+    // e.stopPropagation();
+  });
 
 // make a marker for each feature and add to the map
 new mapboxgl.Marker(el)
   .setLngLat(marker.geometry.coordinates)
   .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+  .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
   .addTo(map);
 });
 
@@ -159,6 +166,7 @@ new mapboxgl.Marker(el)
 
     
     map.on('click', function (e) {
+      console.log();
       $('.eventModal').addClass('is-active');
 
       document.getElementById('info').innerHTML =
@@ -175,9 +183,6 @@ new mapboxgl.Marker(el)
       // .setLngLat([e.lngLat.wrap().lng, e.lngLat.wrap().lat])
       // .setPopup(popup)
       // .addTo(map);
-
-
-      
     }); 
     
   }
@@ -185,7 +190,6 @@ new mapboxgl.Marker(el)
   
   $(".marker").on('click',function(){
       console.log("ZZZZZZZZZZ")
-
   });
  
  
