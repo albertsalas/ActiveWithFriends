@@ -18,7 +18,7 @@ exports.find = (req, res) => {
 exports.findByUsername = (req, res) => {
     
     User.findByUsername(req.params.username, (error, data) => {
-        if(data != undefined){
+        if(data !== undefined){
            if(data.length > 0){
                res.send(true)
            }

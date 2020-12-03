@@ -8,7 +8,6 @@
  * @param error
  * @param response - used to send a response to the client
  */
-
 module.exports = (resource, request, query_response, error, response) => {
     // used for when the resource doesn't exist
     if (query_response.length === 0 || query_response.affectedRows === 0) {
@@ -21,25 +20,10 @@ module.exports = (resource, request, query_response, error, response) => {
 
     // successful PUT/POST/DELETE
     if (query_response.affectedRows >= 1) {
-        // if PUT/DELETE, then they will have an insertId of 0
-        if (query_response.insertId === 0) {
-            var putOrDelete = "deleted";
-            // check if the query_response has a message because only updates
-            // have messages. Probably not the best way to do this.
-            // TODO: use changedRows
-            if (query_response.message) {
-                putOrDelete = "updated"
-            }
-            response.status(200).send({
-                message: `Successfully ${putOrDelete} ${resource}`,
-                data: request
-            });
-        } else {
-            response.status(201).send({
-                message: `Successfully created ${resource}`,
-                data: Object.assign({id: query_response.insertId}, request)
-            });
-        }
+        response.status(200).send({
+            message: `success`,
+            data: request
+        });
     }
 
     // successful GET
