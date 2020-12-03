@@ -2,9 +2,11 @@ const query = require('../private/query');
 
 const Activity = function (activity) {
     this.type_id = activity.type_id;
-    this.location = activity.location;
-    this.time = activity.time;
+    this.title = activity.title;
     this.description = activity.description;
+    this.lng = activity.lng;
+    this.lat = activity.lat;
+    this.time = activity.time;
 }
 
 Activity.findAll = (result) => {

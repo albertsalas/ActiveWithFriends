@@ -53,6 +53,8 @@ h3, p{
 </div>
 <%- include('./partials/eventCreation.ejs') %>
 <pre id="info"></pre>
+
+
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoicHJveGlpZSIsImEiOiJja2hjbWx5c2IwM3lkMnJzYnhoMnd4Ym0xIn0.wHtiEywv0rY_zEuDDxvEYQ';
   var street = `mapbox://styles/mapbox/streets-v11`;
@@ -62,6 +64,8 @@ h3, p{
   var satellite = `mapbox://styles/mapbox/satellite-v9`;
   var satellite_streets = `mapbox://styles/mapbox/satellite-streets-v11`;
   var startMap = street;
+  var url = `/activities`;
+
   $("button").on('click', function(){
     console.log($(this).html());
 
@@ -83,11 +87,6 @@ h3, p{
   loadMap();
   function loadMap(){
 
-
-
-
-    
-
     var map = new mapboxgl.Map({
       container: 'map', // container id
       style: startMap,
@@ -106,67 +105,84 @@ h3, p{
     );
 
     var geojson = {
-  type: 'EventCollection',
-  events: [{
+      type: 'EventCollection',
+      events: [{
+        type: 'Event',
+        geometry: {
+          type: 'Point',
+          coordinates: [-77.032, 38.913]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'Washington, D.C.',
+          eventID: 1
+        }
+      },
+      {
+        type: 'Event',
+        geometry: {
+          type: 'Point',
+          coordinates: [-122.414, 37.776]
+        },
+        properties: {
+          title: 'Mapbox',
+          description: 'San Francisco, California',
+          eventID: 2
+        }
+      }]
+    };
+  geojson.events.push({
     type: 'Event',
-    geometry: {
-      type: 'Point',
-      coordinates: [-77.032, 38.913]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'Washington, D.C.',
-      eventID: 1
-    }
-  },
-  {
-    type: 'Event',
-    geometry: {
-      type: 'Point',
-      coordinates: [-122.414, 37.776]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'San Francisco, California',
-      eventID: 2
-    }
-  }]
-};
-geojson.events.push({
-  type: 'Event',
-    geometry: {
-      type: 'Point',
-      coordinates: [-70.032, 38.913]
-    },
-    properties: {
-      title: 'Mapbox',
-      description: 'Washington, D.C.',
-      eventID:3
-    }
-})
-geojson.events.forEach(function(marker) {
+      geometry: {
+        type: 'Point',
+        coordinates: [-70.032, 38.913]
+      },
+      properties: {
+        title: 'Mapbox',
+        description: 'Washington, D.C.',
+        eventID:3
+      }
+  })
 
-// create a HTML element for each feature
-var el = document.createElement('div');
-el.className = 'marker';
-el.addEventListener('click', function(e){
-    // Prevent the `map.on('click')` from being triggered
-    // e.stopPropagation();
-  });
+  getData(url);
+  async function getData(url){
+    let response = await fetch(url);
+    let data = await response.json();
+    //push new activities to json array
+    data.data.forEach(function(i){
+      geojson.events.push({
+        type: 'Event',
+          geometry: {
+            type: 'Point',
+            coordinates: [i.lng, i.lat]
+          },
+          properties: {
+            title: i.title,
+            description: i.description,
+            eventID: i.id
+          }
+      })
+    });
+    //create markers for each event/activity
+    geojson.events.forEach(function(marker) {
 
-// make a marker for each feature and add to the map
-new mapboxgl.Marker(el)
-  .setLngLat(marker.geometry.coordinates)
-  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-  .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
-  .addTo(map);
-});
-
-
-
-    
+      // create a HTML element for each feature
+      var el = document.createElement('div');
+        el.className = 'marker';
+        el.addEventListener('click', function(e){
+            // Prevent the `map.on('click')` from being triggered
+            // e.stopPropagation();
+        });
+      // make a marker for each feature and add to the map
+      new mapboxgl.Marker(el)
+        .setLngLat(marker.geometry.coordinates)
+        .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+        .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
+        .addTo(map);
+    });
+  }
+  
     map.on('click', function (e) {
-      console.log();
       $('.eventModal').addClass('is-active');
 
       document.getElementById('info').innerHTML =
@@ -176,7 +192,13 @@ new mapboxgl.Marker(el)
       '<br />' +
       // e.lngLat is the longitude, latitude geographical position of the event
       JSON.stringify(e.lngLat.wrap());
-      $("#test").html(JSON.stringify(e.lngLat.wrap()));
+      // let idk = {
+      //             lng: e.lngLat.wrap().lng, 
+      //             lat: e.lngLat.wrap().lat
+      //           }
+      // // idk.push()
+      $("#lng").val(e.lngLat.wrap().lng);
+      $("#lat").val(e.lngLat.wrap().lat);
       
       //el
       // var marker = new mapboxgl.Marker(el)
@@ -191,12 +213,6 @@ new mapboxgl.Marker(el)
   $(".marker").on('click',function(){
       console.log("ZZZZZZZZZZ")
   });
- 
- 
-  
-
-   
-
 
 </script>
 
