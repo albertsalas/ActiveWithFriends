@@ -23,7 +23,7 @@ router.post('/', function(req, res){
 	// req.session.firstname = "Santa";
 	// req.session.lastname = "Claus";
 	
-	res.redirect('/profile');
+	// res.redirect('/profile');
 
 	User.findByUsername(req.body.username, (err, data) => {
 		if(!err && data.length === 1){
