@@ -14,6 +14,13 @@ exports.find = (req, res) => {
     });
 }
 
+exports.findEvent = (req, res) => {
+    Activity.findEvent(req.params.id, (error, data) => {
+        //response("activity", req.params, data, error, res);
+        res.render("eventInfo", {data: data, title:"Event Information"});
+    });
+}
+
 exports.create = (req, res) => {
     var activity = new Activity(req.body);
     if (!validRequest(activity, res)) return;

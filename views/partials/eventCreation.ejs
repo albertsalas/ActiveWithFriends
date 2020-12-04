@@ -25,7 +25,7 @@
 
         <div class="field">
           <div class="control">
-            <input class="input is-primary" type="date" placeholder="date" id="d" style="width: 13rem;">
+            <input class="input is-primary" type="datetime-local" placeholder="date" id="d" style="width: 13rem;">
           </div>
         </div>
         <div class="columns is-centered is-mobile">
@@ -41,15 +41,20 @@
 
  
   <script>
+    $("#title").val("");
+    $("#d").val("");
+    $("#desc").val("");
 
-    
+    //hide modal on background click
     $(".modal-background").click(function() {
         $(".eventModal").removeClass("is-active");
     });
+    //don't need anymore
     $("#cancelEvent").click(function() {
         $(".eventModal").removeClass("is-active");
     });
 
+    //add event 
     $("#addEvent").on('click', function(){
       let t = $("#title").val();
       let desc = $("#desc").val();
@@ -58,16 +63,19 @@
       let d = $("#d").val();
 
       finalizeEvent(t, desc, lng, lat, d);
+      $(".eventModal").removeClass("is-active");
     });
 
+    //function for adding event to database
     function finalizeEvent(title, desc, lng, lat, date){
-      
+      title = title.toUpperCase();
       let newEvent = {
         type_id: 0,
         title: title,
         description: desc,
         lng: lng,
         lat: lat,
+        time: date,
       }
 
       $.ajax({
@@ -79,5 +87,7 @@
 
         },
       });
+      
+
     }
   </script>

@@ -1,0 +1,47 @@
+
+<%- include('./partials/header.ejs') %>
+ 
+
+<div class="hero is-primary" >
+  <%- include('./partials/nav.ejs')  %> 
+  <div class="hero-body" style="background-color: rgb(21, 132, 121);">
+      <div class="container" style="text-align: center;">
+          <h1 class="title">
+            <%= title %> 
+          </h1>
+      </div>
+  </div>
+
+    
+</div>
+
+<h2 style="text-align: center; font-size: 2em;">
+    <b><span style="color: rgb(21, 132, 121);"><%= data[0].title %></span> </b>
+    <br>
+    <span style="color: black;">
+        Event ID: <%= data[0].id %>
+        <br>
+        Description: <%= data[0].description %>
+        <br> 
+        Date: <%= data[0].time %>
+        <br>
+    </span>
+    <button class="button is-primary">Join</button>
+
+</h2>
+
+
+<% if (loggedIn) { %>
+   
+  <script>
+    var username = '<%- username %>'
+    var userId = `<%- userId %>`
+
+    console.log(username, " + ", userId);
+  </script>
+  <%- include('./partials/chat.ejs') %>
+<% } %>
+
+
+
+<%- include('./partials/footer.ejs') %>

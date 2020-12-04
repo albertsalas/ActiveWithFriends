@@ -21,6 +21,12 @@ Activity.find = (activity_id, result) => {
     });
 }
 
+Activity.findEvent = (activity_id, result) => {
+    query("SELECT * FROM Activity WHERE id = ?", activity_id, (error, res) => {
+        result(error, res);
+    });
+}
+
 Activity.create = (activity, result) => {
     query("INSERT INTO Activity SET ?", activity, (error, res) => {
         result(error, res);
