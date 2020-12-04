@@ -1,16 +1,42 @@
 <%- include('./partials/header.ejs') %>
 <div class="hero is-primary">
     <%- include('./partials/nav.ejs')  %> 
-<!-- if logged in, show profile icon & logout button -->
-<!-- TODO: Make this work -->
-    <% if (loggedIn) { %>
-        <script>
-            var username = '<%- username %>'
-            var userId = `<%- userId %>`
-
-            console.log(username + " " + userId);
-        </script>
-        <%- include('./partials/nav.ejs')  %> 
-    <% } %>
 </div>
+
+<div class = "container" style="color: white;">
+    
+    <a id = "username"></a>
+
+    <!-- TODO: Make friendslist? -->
+    <a href = "/discover" >
+        Friends 
+    </a>
+
+    <br><br>
+
+    <div>
+        Firstname <input type = "text" id = "fname" name = "fname" value = "x"> <br>
+        Lastname <input type = "text" id = "lname" name = "lname" value = "x">
+    </div>
+</div>
+
+<% if (loggedIn) { %>
+    <script>
+        var username = '<%- username %>'
+        var userId = `<%- userId %>`
+        var fname = `<%- firstname %>`
+        var lname = `<%- lastname %>`
+
+        console.log(username + " + " + userId + " " + fname + "  " + lname);
+
+        $("#username").html(username);
+        $("#fname").val(fname);
+        $("#lname").val(lname);
+    </script>
+<% } else { %>
+    <script>
+
+    </script>
+<% } %> 
+
 <%- include('./partials/footer.ejs') %>
