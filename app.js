@@ -52,6 +52,8 @@ app.use(function(req, res, next) {
     res.locals.username = req.session.username;
     res.locals.loggedIn = req.session.loggedIn;
     res.locals.userId = req.session.userId;
+    res.locals.firstname = req.session.firstname;
+    res.locals.lastname = req.session.lastname;
     next();
 });
 
