@@ -1,0 +1,83 @@
+<div class="modal eventModal">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+      <header class="modal-card-head" style="text-align: center; background-color: rgb(32, 197, 181); border-bottom: 0;">
+        <p class="modal-card-title" style="font-size: 2em; color: white;">Event</p>
+      </header>
+      <section class="modal-card-body" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
+        <div id="test"></div>
+
+        <div class="field">
+            <div class="control">
+                <input class="input is-primary" type="text" placeholder="Title" id="title">
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+              <textarea class="textarea is-primary" placeholder="Description" id="desc"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+              <input class="input is-primary" type="number" placeholder="Capacity" style="width: 10rem;">
+            </div>
+        </div>
+
+        <div class="field">
+          <div class="control">
+            <input class="input is-primary" type="date" placeholder="date" id="d" style="width: 13rem;">
+          </div>
+        </div>
+        <div class="columns is-centered is-mobile">
+            <button class="button is-primary" id="addEvent" value=""><strong>Add Event</strong></button>
+        </div>
+        <input type="text" hidden value="" id="lng">
+        <input type="text" hidden value="" id="lat">
+
+      </section>
+   
+    </div>
+  </div>
+
+ 
+  <script>
+
+    
+    $(".modal-background").click(function() {
+        $(".eventModal").removeClass("is-active");
+    });
+    $("#cancelEvent").click(function() {
+        $(".eventModal").removeClass("is-active");
+    });
+
+    $("#addEvent").on('click', function(){
+      let t = $("#title").val();
+      let desc = $("#desc").val();
+      let lng = $("#lng").val();
+      let lat = $("#lat").val();
+      let d = $("#d").val();
+
+      finalizeEvent(t, desc, lng, lat, d);
+    });
+
+    function finalizeEvent(title, desc, lng, lat, date){
+      
+      let newEvent = {
+        type_id: 0,
+        title: title,
+        description: desc,
+        lng: lng,
+        lat: lat,
+      }
+
+      $.ajax({
+        url: "/activities",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify(newEvent),
+        success: function(){
+
+        },
+      });
+    }
+  </script>
