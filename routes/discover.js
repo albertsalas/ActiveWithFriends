@@ -6,6 +6,6 @@ router.get('/', async (req,res) => {
     res.render('discover', { title: 'Discover' })
 });
 
-router.post('/addActivity', activities.create);
+router.get('/eventInfo/:id', activities.findEvent);
 
 module.exports = router;
