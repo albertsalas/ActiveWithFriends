@@ -22,8 +22,7 @@
 .title {
   color: #ffffff;
   text-align: center;
-  /* font-weight: 100;  */
-}
+  font-weight: 100; }
 
 .wrapper {
   height: 520px;
