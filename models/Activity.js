@@ -22,14 +22,22 @@ Activity.find = (activity_id, result) => {
 }
 
 Activity.findEvent = (activity_id, result) => {
-    query("SELECT * FROM Activity WHERE id = ?", activity_id, (error, res) => {
+    query("SELECT id, title, description, lng, lat, hostID, DATE_FORMAT(time, '%h:%i %p - %d %b %Y') as time FROM Activity WHERE id = ?", activity_id, (error, res) => {
         result(error, res);
+
     });
+}
+
+Activity.checkJoined = (activity_id, user_id, result) => {
+    // if(user_id){
+        query("SELECT * FROM JoinedActivities WHERE activityID = ? AND userID = ?", [activity_id, user_id], (error, res) => {
+            result(error, res);
+        });
+    // }
 }
 
 Activity.findUserEvents = (user_id , result) => {
     query("SELECT JoinedActivities.activityID, Activity.title FROM JoinedActivities INNER JOIN Activity ON JoinedActivities.activityID = Activity.id WHERE JoinedActivities.userID=?", [user_id], (error, res) => {
-        console.log(res)
         result(error, res);
     });
 }
@@ -49,6 +57,24 @@ Activity.update = (activity, result) => {
 Activity.delete = (activity, result) => {
     query("DELETE FROM Activity WHERE ?", activity, (error, res) => {
        result(error, res);
+    });
+}
+
+Activity.joinActivity = (user_id, activity_id , result) => {
+    query("SELECT * FROM JoinedActivities WHERE activityID = ? AND userID = ? ", [activity_id, user_id], (error, res) => {
+        if(user_id){
+            if(res.length > 0){
+                query("DELETE FROM JoinedActivities WHERE activityID = ? AND userID = ? ", [activity_id, user_id], (error, res) => {
+                });
+            }
+            else{
+                query("INSERT INTO JoinedActivities SET activityID = ? , userID = ? ", [activity_id, user_id], (error, res) => {
+                });
+            }
+        }
+    
+        
+        result(error, res);
     });
 }
 

@@ -15,20 +15,48 @@
     
 </div>
 
-<h2 style="text-align: center; font-size: 2em;">
-    <b><span style="color: rgb(21, 132, 121);"><%= data[0].title %></span> </b>
-    <br>
-    <span style="color: black;">
-        Event ID: <%= data[0].id %>
-        <br>
-        Description: <%= data[0].description %>
-        <br> 
-        Date: <%= data[0].time %>
-        <br>
-    </span>
-    <button class="button is-primary">Join</button>
+<br>
 
-</h2>
+<div class="card" style="width: 50rem; margin: 0 auto">
+  <header class="card-header">
+    <p class="card-header-title is-centered" style="color: rgb(21, 132, 121);">
+      <%= data[0].title %>
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+      <%= data[0].description %>
+      <!-- <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a> -->
+      <br>
+      <time datetime="2016-1-1"> <%= data[0].time %></time>
+      
+
+      <!-- 11:09 PM - 1 Jan 2016 -->
+    </div>
+  </div>
+  <footer class="card-footer">
+    <% if (!joined) { %>
+    <div href="#" class="card-footer-item"><button class="button is-primary" id="joinActivity" value="0">Join</button></div>
+    <% } else {%>
+      <div href="#" class="card-footer-item"><button class="button is-primary" id="joinActivity" value="0">Leave</button></div>
+    <% } %>
+    <% if (host) { %>
+      <div href="#" class="card-footer-item"><button class="button is-primary" id="editActivity" value="0">Edit</button></div>
+      <div href="#" class="card-footer-item"><button class="button is-primary" id="deleteActivity" value="0">Delete</button></div>
+    <% } %>
+  </footer>
+</div>
+
+
+<script>
+  $("#joinActivity").click(test) 
+  async function test(){ 
+    let s = await (await fetch(`${window.location.origin}/ActivityInformation/join?id=<%= data[0].id %>`)).json();
+
+    $("#joinActivity").html(s.joined ? `Join` : `Leave`)
+    
+  }
+</script>
 
 
 <% if (loggedIn) { %>

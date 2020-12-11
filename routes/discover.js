@@ -11,7 +11,7 @@ router.get('/', async (req,res) => {
 
 //router.get('/', activities.findUserEvents);
 
-router.get('/eventInfo/:id', activities.findEvent);
+//router.get('/eventInfo/:id', activities.findEvent);
 
 
 

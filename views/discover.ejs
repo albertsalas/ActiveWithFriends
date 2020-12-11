@@ -45,11 +45,11 @@ h3, p{
 
   <div class="tabs is-centered">
     <ul>
-      <button class="button is-primary">Streetview</button>
-      <button class="button is-primary">Dark</button>
-      <button class="button is-primary">Outdoors</button>
-      <button class="button is-primary">Satellite</button>
-      <button class="button is-primary">Satellite+Streets</button>
+      <button class="button is-primary maptheme">Streetview</button>
+      <button class="button is-primary maptheme">Dark</button>
+      <button class="button is-primary maptheme">Outdoors</button>
+      <button class="button is-primary maptheme">Satellite</button>
+      <button class="button is-primary maptheme">Satellite+Streets</button>
     </ul>
   </div>
 </div>
@@ -66,7 +66,7 @@ h3, p{
   var startMap = street;
   var url = `/activities`;
 
-  $("button").on('click', function(){
+  $(".maptheme").on('click', function(){
     console.log($(this).html());
     $("#map").html("");
     switch($(this).html()){
@@ -147,9 +147,9 @@ h3, p{
     
     $(".marker").on('click', function(){
           console.log($(this).val())
-          getEvent(url+`/${$(this).val()}`);
+          window.location = window.location.origin + `/ActivityInformation?id=${$(this).val()}`;
+          
     });
-
   }
  
     map.on('click', function (e) {
@@ -173,7 +173,7 @@ h3, p{
   }
 </script>
 
-<div class="modal joinModal">
+<!-- <div class="modal joinModal">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head" style="text-align: center; background-color: rgb(32, 197, 181); border-bottom: 0;">
@@ -192,28 +192,28 @@ h3, p{
       <button class="button is-success" id="joinEvent">Save changes</button>
     </footer>
   </div>
-</div>
+</div> -->
 
 
 <!-- script for joining activities -->
 <script>
-  //hide modal on background click
-  $(".modal-background").click(function() {
-      $(".joinModal").removeClass("is-active");
-  });
+  // //hide modal on background click
+  // $(".modal-background").click(function() {
+  //     $(".joinModal").removeClass("is-active");
+  // });
 
-  async function getEvent(url){
-    //  let response = await fetch(url);
-    //  let data = await response.json();
-    //  console.log(data.data)
+  // async function getEvent(url){
+  //   //  let response = await fetch(url);
+  //   //  let data = await response.json();
+  //   //  console.log(data.data)
 
-    // console.log(data.data[0]);
+  //   // console.log(data.data[0]);
 
-    // $("#joinTitle").val(`${data.data[0].title}`);
-    // $("#joinD").val(`${data.data[0].date}`);
-    // $("#joinDescription").val(`${data.data[0].description}`);
-    $('.joinModal').addClass('is-active');
-  }
+  //   // $("#joinTitle").val(`${data.data[0].title}`);
+  //   // $("#joinD").val(`${data.data[0].date}`);
+  //   // $("#joinDescription").val(`${data.data[0].description}`);
+  //   $('.joinModal').addClass('is-active');
+  // }
 
 </script>
 

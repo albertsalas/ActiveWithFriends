@@ -15,16 +15,28 @@ exports.find = (req, res) => {
 }
 
 exports.findEvent = (req, res) => {
-    Activity.findEvent(req.params.id, (error, data) => {
+    Activity.findEvent(req.query.id, (error, data) => {
         //response("activity", req.params, data, error, res);
-        res.render("eventInfo", {data: data, title:"Event Information"});
+        Activity.checkJoined(req.query.id, req.session.userId, (error, joined) => {
+            let check = (joined.length > 0) ? true : false;
+            let host = (data[0].hostID == req.session.userId) ? true : false;
+            res.render("eventInfo", {data: data, title:"Event Information", joined: check, host:host});
+        });
+        
     });
 }
 
+
 exports.findUserEvents = (req, res) => {
     Activity.findUserEvents(req.session.userId, (error, data) => {
-        console.log(data);
         res.render('profile', {data:data, title: ""})
+    });
+}
+
+exports.joinActivity = (req, res) => {
+    Activity.joinActivity(req.session.userId, req.query.id, (error, data) => {
+        let check = (data.length > 0) ? true : false;
+        res.json({data: data, joined: check})
     });
 }
 
