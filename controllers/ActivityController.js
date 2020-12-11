@@ -14,6 +14,20 @@ exports.find = (req, res) => {
     });
 }
 
+exports.findEvent = (req, res) => {
+    Activity.findEvent(req.params.id, (error, data) => {
+        //response("activity", req.params, data, error, res);
+        res.render("eventInfo", {data: data, title:"Event Information"});
+    });
+}
+
+exports.findUserEvents = (req, res) => {
+    Activity.findUserEvents(req.params.id, (error, data) => {
+        //response("activity", req.params, data, error, res);
+        res.send(data);
+    });
+}
+
 exports.create = (req, res) => {
     var activity = new Activity(req.body);
     if (!validRequest(activity, res)) return;
@@ -27,9 +41,11 @@ exports.update = (req, res) => {
     var activity_id = req.body.id;
     var activity = new Activity({
         type_id: req.body.type_id,
-        location: req.body.location,
+        title: req.body.title,
+        description: req.body.description,
+        lng: req.body.lng,
+        lat: req.body.lat,
         time: req.body.time,
-        description: req.body.description
     });
 
     if (!validRequest(Object.assign({id: activity_id}, activity), res)) return;

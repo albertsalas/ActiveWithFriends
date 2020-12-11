@@ -2,9 +2,11 @@ const query = require('../private/query');
 
 const Activity = function (activity) {
     this.type_id = activity.type_id;
-    this.location = activity.location;
-    this.time = activity.time;
+    this.title = activity.title;
     this.description = activity.description;
+    this.lng = activity.lng;
+    this.lat = activity.lat;
+    this.time = activity.time;
 }
 
 Activity.findAll = (result) => {
@@ -15,6 +17,18 @@ Activity.findAll = (result) => {
 
 Activity.find = (activity_id, result) => {
     query("SELECT * FROM Activity WHERE id = ?", activity_id, (error, res) => {
+        result(error, res);
+    });
+}
+
+Activity.findEvent = (activity_id, result) => {
+    query("SELECT * FROM Activity WHERE id = ?", activity_id, (error, res) => {
+        result(error, res);
+    });
+}
+
+Activity.findUserEvents = (user_id , result) => {
+    query("SELECT JoinedActivities.activityID, Activity.title FROM JoinedActivities INNER JOIN Activity ON JoinedActivities.activityID = Activity.id WHERE JoinedActivities.userID=?", [user_id], (error, res) => {
         result(error, res);
     });
 }

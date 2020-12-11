@@ -2,13 +2,13 @@
     <!-- <div class="container"> -->
       <!-- <link rel="stylesheet" href="css/mystyles.css"> -->
 
-<div class="modal" >
+<div class="modal signupModal" >
   <div class="modal-background is-black" ></div>
   <div class="modal-card">
     <header class="modal-card-head" style="text-align: center; background-color: rgb(32, 197, 181); border-bottom: 0;">
       <p class="modal-card-title" style="font-size: 2em; color: white;">Sign Up</p>
     </header>
-    <section class="modal-card-body grad" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
+    <section class="modal-card-body" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
       <!-- POST FORM -->
       <!-- <form action="/signup" method="post"> -->
         <!-- USER NAME -->
@@ -70,17 +70,17 @@
   <script>
 
     $("#register").on('click', function(){
-        $(".modal").addClass("is-active");
+        $(".signupModal").addClass("is-active");
     });
     $(".delete").on('click', function(){
-        $(".modal").removeClass("is-active");
+        $(".signupModal").removeClass("is-active");
     });
-    if($("modal").hasClass("is-active")){
+    if($(".signupModal").hasClass("is-active")){
 
     }
     
     $(".modal-background").click(function() {
-        $(".modal").removeClass("is-active");
+        $(".signupModal").removeClass("is-active");
     });
 
  
