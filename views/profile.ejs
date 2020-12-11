@@ -18,10 +18,30 @@
 
     <div class="container">
         <div class="row">
-            <% data[0] %> 
+            <%= data[0] %> 
             <% data.forEach(function(event, index) { %>
                 <div class="col-md-4">
-                    <% event.activityID %> 
+                    <div class="card mb-4 shadow-sm">
+                        <a href="discover/eventInfo/<%= event.activityID %>">
+                            <div class="card-body">
+                                <p class="card-text"></p>
+                                <div class = "row">
+                                    <div class = "col-8">
+                                        <!-- activity title -->
+                                        <h5><%= event.activityID %> </h5>
+                                    </div>
+                                    <div class = "col-4">
+                                        <!-- activity id -->
+                                        <p class = "text-right"> <%= event.activityID %>  </p>
+                                    </div>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <!-- description -->
+                                    <p><%= event.activityID %> </p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             <% }); %>
         </div>
@@ -39,6 +59,7 @@
         var lname = `<%- lastname %>`
 
         console.log(username + " + " + userId + " " + fname + "  " + lname);
+        console.log(data[0]);
 
         $("#username").html(username);
         $("#fname").val(fname);
