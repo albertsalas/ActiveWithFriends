@@ -13,6 +13,22 @@
         Firstname <input type = "text" id = "fname" name = "fname" value = "x"> <br>
         Lastname <input type = "text" id = "lname" name = "lname" value = "x">
     </div>
+
+    <!-- for loop through data -->
+
+    <div class="container">
+        <div class="row">
+            <% data[0] %> 
+            <% data.forEach(function(event, index) { %>
+                <div class="col-md-4">
+                    <% event.activityID %> 
+                </div>
+            <% }); %>
+        </div>
+    </div>
+    
+
+    
 </div>
 
 <% if (loggedIn) { %>
