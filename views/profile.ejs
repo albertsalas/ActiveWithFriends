@@ -15,6 +15,12 @@
     </div>
 </div>
 
+<% data.forEach(element => { %>
+    <%= element.activityID %> 
+    <%= element.title %> 
+
+<% }) %>
+
 <% if (loggedIn) { %>
     <script>
         var username = '<%- username %>'

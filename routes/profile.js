@@ -1,10 +1,9 @@
 var express = require('express');
 var router = express.Router();
+const activities = require("../controllers/ActivityController");
 
 /* GET profile page. */
-router.get('/', function(req, res, next) {
-  res.render('profile', { title: 'Active With Friends' });
-});
+router.get('/', activities.findUserEvents);
 
 
 

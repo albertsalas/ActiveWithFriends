@@ -27,7 +27,7 @@
     "node-sass-middleware": "^0.11.0",
     "nodemon": "^2.0.6",
     "session": "^0.1.0",
-    "socket.io": "^3.0.2"
+    "socket.io": "^3.0.4"
   },
   "description": "",
   "main": "app.js",

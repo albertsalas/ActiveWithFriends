@@ -31,6 +31,8 @@ h3, p{
 
 <div class="hero is-primary" >
   <%- include('./partials/nav.ejs')  %> 
+  <%- include('./partials/eventCreation.ejs') %>
+
   <div class="hero-body" style="background-color: rgb(21, 132, 121);">
       <div class="container" style="text-align: center;">
           <h1 class="title">
@@ -50,11 +52,7 @@ h3, p{
       <button class="button is-primary">Satellite+Streets</button>
     </ul>
   </div>
-
-    
 </div>
-<%- include('./partials/eventCreation.ejs') %>
-<pre id="info"></pre>
 
 
 <script>
@@ -108,51 +106,14 @@ h3, p{
 
     var geojson = {
       type: 'EventCollection',
-      events: 
-      [
-      //   {
-      //   type: 'Event',
-      //   geometry: {
-      //     type: 'Point',
-      //     coordinates: [-77.032, 38.913]
-      //   },
-      //   properties: {
-      //     title: 'Mapbox',
-      //     description: 'Washington, D.C.',
-      //     eventID: 1
-      //   }
-      // },
-      // {
-      //   type: 'Event',
-      //   geometry: {
-      //     type: 'Point',
-      //     coordinates: [-122.414, 37.776]
-      //   },
-      //   properties: {
-      //     title: 'Mapbox',
-      //     description: 'San Francisco, California',
-      //     eventID: 2
-      //   }
-      // }
-    ]
+      events: []
     };
-  // geojson.events.push({
-  //   type: 'Event',
-  //     geometry: {
-  //       type: 'Point',
-  //       coordinates: [-70.032, 38.913]
-  //     },
-  //     properties: {
-  //       title: 'Mapbox',
-  //       description: 'Washington, D.C.',
-  //       eventID:3
-  //     }
-  // })
 
   getData(url);
   async function getData(url){
     let response = await fetch(url);
     let data = await response.json();
+    
     //push new activities to json array
     data.data.forEach(function(i){
       geojson.events.push({
@@ -162,8 +123,6 @@ h3, p{
             coordinates: [i.lng, i.lat]
           },
           properties: {
-            // title: i.title,
-            // description: i.description,
             eventID: i.id
           }
       })
@@ -171,27 +130,26 @@ h3, p{
     //create markers for each event/activity
     geojson.events.forEach(function(marker) {
 
-      // create a HTML element for each feature
       var el = document.createElement('div');
-        el.className = 'marker';
-        el.value = marker.properties.eventID;
-        // el.val(1);
-        el.addEventListener('click', function(e){
-            // Prevent the `map.on('click')` from being triggered
-              e.stopPropagation();
-        });
+      el.className = 'marker';
+      el.value = marker.properties.eventID;
+      el.addEventListener('click', function(e){
+          // Prevent the `map.on('click')` from being triggered
+            e.stopPropagation();
+      });
       // make a marker for each feature and add to the map
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
-        // .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
         .addTo(map);
+        // .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
         // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
     });
     
     $(".marker").on('click', function(){
-        console.log($(this).val())
-        window.location = "/discover/eventInfo/"+$(this).val()
-      });
+          console.log($(this).val())
+          getEvent(url+`/${$(this).val()}`);
+    });
+
   }
  
     map.on('click', function (e) {
@@ -199,19 +157,63 @@ h3, p{
         $('.eventModal').addClass('is-active');
         $("#lng").val(e.lngLat.wrap().lng);
         $("#lat").val(e.lngLat.wrap().lat);
-      // document.getElementById('info').innerHTML =
-      // // e.point is the x, y coordinates of the mousemove event relative
-      // // to the top-left corner of the map
-      // JSON.stringify(e.point) +
-      // '<br />' +
-      // // e.lngLat is the longitude, latitude geographical position of the event
-      // JSON.stringify(e.lngLat.wrap());
+
+        {
+          // document.getElementById('info').innerHTML =
+          // // e.point is the x, y coordinates of the mousemove event relative
+          // // to the top-left corner of the map
+          // JSON.stringify(e.point) +
+          // '<br />' +
+          // // e.lngLat is the longitude, latitude geographical position of the event
+          // JSON.stringify(e.lngLat.wrap());
+        }
+ 
     }); 
     
   }
-  
-  
+</script>
 
+<div class="modal joinModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head" style="text-align: center; background-color: rgb(32, 197, 181); border-bottom: 0;">
+      <p class="modal-card-title" style="font-size: 2em; color: white;">Modal title</p>
+      <button class="delete" aria-label="close"></button>
+    </header>
+    <section class="modal-card-body" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
+      <div style="text-align: center;">
+
+        <p>Host</p>
+        <p>Description</p>
+        <p>Date</p>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success" id="joinEvent">Save changes</button>
+    </footer>
+  </div>
+</div>
+
+
+<!-- script for joining activities -->
+<script>
+  //hide modal on background click
+  $(".modal-background").click(function() {
+      $(".joinModal").removeClass("is-active");
+  });
+
+  async function getEvent(url){
+    //  let response = await fetch(url);
+    //  let data = await response.json();
+    //  console.log(data.data)
+
+    // console.log(data.data[0]);
+
+    // $("#joinTitle").val(`${data.data[0].title}`);
+    // $("#joinD").val(`${data.data[0].date}`);
+    // $("#joinDescription").val(`${data.data[0].description}`);
+    $('.joinModal').addClass('is-active');
+  }
 
 </script>
 

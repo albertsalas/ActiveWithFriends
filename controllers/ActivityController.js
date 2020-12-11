@@ -22,9 +22,9 @@ exports.findEvent = (req, res) => {
 }
 
 exports.findUserEvents = (req, res) => {
-    Activity.findUserEvents(req.params.id, (error, data) => {
-        //response("activity", req.params, data, error, res);
-        res.send(data);
+    Activity.findUserEvents(req.session.userId, (error, data) => {
+        console.log(data);
+        res.render('profile', {data:data, title: ""})
     });
 }
 
