@@ -1,4 +1,7 @@
-
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/login.css">
+</head>
   <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand" >
       <a class="navbar-item" href="/">
@@ -57,8 +60,35 @@
             <button class="button is-white is-outlined" id="register">
               <strong>Sign up</strong>
             </button>
-            <a class="button is-dark" style="background-color:#a1e0a9;" id="login" href="../login">
-              <strong>Sign In</strong>
+              <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
+                <strong>Sign In</strong>
+              </button>
+              <div id="id01" class="modal">
+                <form class="modal-content animate" action="./login" method="POST">
+                  <div class="imgcontainer">
+                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+                    <!-- <img src="file/location" alt="Avatar" class="avatar"> -->
+                  </div>
+
+                  <div class="container">
+                    <label for="username"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" required>
+
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="password" required>
+
+                    <button type="submit">Login</button>
+                    <label>
+                      <input type="checkbox" checked="checked" name="remember"> Remember me
+                    </label>
+                  </div>
+
+                  <div class="container" style="background-color:#f1f1f1">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                    <span class="password">Forgot <a href="#">password?</a></span>
+                  </div>
+                </form>
+              </div>
             </a>
             <% } else { %>
               <form action="/logout" method="POST">
@@ -83,4 +113,13 @@
       // $("#register").css("background-color", "turquoise")
     });
 
+    //Login Modal
+    var modal = document.getElementById('id01');
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
   </script>
