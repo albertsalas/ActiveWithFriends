@@ -141,14 +141,10 @@ h3, p{
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
-        // .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
     });
     
     $(".marker").on('click', function(){
-          console.log($(this).val())
           window.location = window.location.origin + `/ActivityInformation?id=${$(this).val()}`;
-          
     });
   }
  
@@ -157,64 +153,9 @@ h3, p{
         $('.eventModal').addClass('is-active');
         $("#lng").val(e.lngLat.wrap().lng);
         $("#lat").val(e.lngLat.wrap().lat);
-
-        {
-          // document.getElementById('info').innerHTML =
-          // // e.point is the x, y coordinates of the mousemove event relative
-          // // to the top-left corner of the map
-          // JSON.stringify(e.point) +
-          // '<br />' +
-          // // e.lngLat is the longitude, latitude geographical position of the event
-          // JSON.stringify(e.lngLat.wrap());
-        }
- 
     }); 
     
   }
-</script>
-
-<!-- <div class="modal joinModal">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head" style="text-align: center; background-color: rgb(32, 197, 181); border-bottom: 0;">
-      <p class="modal-card-title" style="font-size: 2em; color: white;">Modal title</p>
-      <button class="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body" style=" background-image: linear-gradient(45deg,#00ada7 50%,#2cbbb7 50%);">
-      <div style="text-align: center;">
-
-        <p>Host</p>
-        <p>Description</p>
-        <p>Date</p>
-      </div>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success" id="joinEvent">Save changes</button>
-    </footer>
-  </div>
-</div> -->
-
-
-<!-- script for joining activities -->
-<script>
-  // //hide modal on background click
-  // $(".modal-background").click(function() {
-  //     $(".joinModal").removeClass("is-active");
-  // });
-
-  // async function getEvent(url){
-  //   //  let response = await fetch(url);
-  //   //  let data = await response.json();
-  //   //  console.log(data.data)
-
-  //   // console.log(data.data[0]);
-
-  //   // $("#joinTitle").val(`${data.data[0].title}`);
-  //   // $("#joinD").val(`${data.data[0].date}`);
-  //   // $("#joinDescription").val(`${data.data[0].description}`);
-  //   $('.joinModal').addClass('is-active');
-  // }
-
 </script>
 
 <% if (loggedIn) { %>

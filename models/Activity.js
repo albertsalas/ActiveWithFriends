@@ -7,6 +7,7 @@ const Activity = function (activity) {
     this.lng = activity.lng;
     this.lat = activity.lat;
     this.time = activity.time;
+    
 }
 
 Activity.findAll = (result) => {
@@ -42,8 +43,8 @@ Activity.findUserEvents = (user_id , result) => {
     });
 }
 
-Activity.create = (activity, result) => {
-    query("INSERT INTO Activity SET ?", activity, (error, res) => {
+Activity.create = (activity, user_id, result) => {
+    query("INSERT INTO Activity SET ?, hostID = ?", [activity, user_id], (error, res) => {
         result(error, res);
     });
 }
@@ -72,20 +73,15 @@ Activity.joinActivity = (user_id, activity_id , result) => {
                 });
             }
         }
-    
-        
         result(error, res);
     });
 }
 
-Activity.editActivity = (user_id, activity_id , result) => {
+Activity.editActivity = (activity_id , result) => {
     
-        query("SELECT id, title, description, lng, lat, hostID, DATE_FORMAT(time, '%Y-%m-%dT%h:%i') as time FROM Activity WHERE id = ? AND hostID = ? ", [activity_id, user_id], (error, res) => {
-
-            result(error, res);
-        });
-    
-
+    query("SELECT id, title, description, lng, lat, hostID, DATE_FORMAT(time, '%Y-%m-%dT%h:%i') as time FROM Activity WHERE id = ?", [activity_id], (error, res) => {
+        result(error, res);
+    });
 }
 
 module.exports = Activity;

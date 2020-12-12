@@ -39,17 +39,23 @@
 
 
 <script>
-//   $("#joinActivity").click(test) 
-//   async function test(){ 
-//     let s = await (await fetch(`${window.location.origin}/ActivityInformation/join?id=<%= data[0].id %>`)).json();
 
-//     $("#joinActivity").html(s.joined ? `Join` : `Leave`)
-    
-//   }
   $("#saveActivity").on('click', function() {
-    $.ajax({
-
-    })
+    let updatedActivity = {
+        title: title,
+        description: description,
+        time: time,
+      }
+      $.ajax({
+        type:'put',
+        url:'/activities',
+        contentType: 'application/json',
+        data: JSON.stringify(updatedActivity),
+        success: function(){
+          
+        },
+          
+      });
   });
 </script>
 
