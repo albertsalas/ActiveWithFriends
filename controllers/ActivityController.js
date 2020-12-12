@@ -69,6 +69,9 @@ exports.create = (req, res) => {
     if (!validRequest(activity, res)) return;
     if(req.session.userId){
         Activity.create(activity, req.session.userId , (error, data) => {
+            Activity.joinActivity(req.session.userId, data.insertId, (error, data) => {
+            });
+            // console.log(data.insertId);
             response("activity", req.body, data, error, res);
         });
     }
