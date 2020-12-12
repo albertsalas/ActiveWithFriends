@@ -28,11 +28,17 @@ exports.findEvent = (req, res) => {
 
 
 exports.findUserEvents = (req, res) => {
-    Activity.findUserEvents(req.session.userId, (error, data) => {
-        //response("activity", req.params, data, error, res);
-        res.render("profile", {data: data, title:"Profile"});
-    });
+    if(req.session.userId){
+        Activity.findUserEvents(req.session.userId, (error, data) => {
+            //response("activity", req.params, data, error, res);
+            res.render("profile", {data: data, title:"Profile"});
+        });
+    }
+    else{
+        res.redirect("/");
+    }
 }
+    
 
 exports.joinActivity = (req, res) => {
     Activity.joinActivity(req.session.userId, req.query.id, (error, data) => {
