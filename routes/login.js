@@ -30,11 +30,10 @@ router.post('/', function(req, res){
 				res.redirect('/');
 				return;
 			} else { //Password is incorrect
-				res.render('login', {error: true, password: req.body.password});
+				res.redirect('/');
 			}
 		}
-		res.render('login', {error: true, user: req.body.username});
-	});
+		res.redirect('/');});
 });
 
 
