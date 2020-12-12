@@ -25,6 +25,9 @@
                     <a href="/ActivityInformation?id=<%= event.activityID %>">
                         <div class="card-content">
                             <div class="content">
+                                <% if (event.hostID == userId) { %>
+                                    HOST
+                                <% } %>  
                                 <h5><%= event.title %> <%= event.activityID %></h5>
                             <br>
                             <time datetime="2016-1-1"><%= event.time %></time>
