@@ -45,6 +45,7 @@ Activity.findUserEvents = (user_id , result) => {
 
 Activity.create = (activity, user_id, result) => {
     query("INSERT INTO Activity SET ?, hostID = ?", [activity, user_id], (error, res) => {
+        console.log(activity)
         result(error, res);
     });
 }
