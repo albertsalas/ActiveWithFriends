@@ -18,6 +18,7 @@ var logoutRouter = require('./routes/logout');
 var profileRouter = require('./routes/profile');
 var activityinfoRouter = require('./routes/activityinfo');
 var editRouter = require('./routes/edit');
+var adminRouter = require('./routes/AdminRouter');
 
 var app = express();
 
@@ -57,6 +58,7 @@ app.use(function(req, res, next) {
     res.locals.userId = req.session.userId;
     res.locals.firstname = req.session.firstname;
     res.locals.lastname = req.session.lastname;
+    res.locals.isAdmin = req.session.isAdmin;
     next();
 });
 
@@ -71,5 +73,6 @@ app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
 app.use('/ActivityInformation', activityinfoRouter);
 app.use('/edit', editRouter);
+app.use('/admin', adminRouter);
 
 module.exports = app;

@@ -151,14 +151,10 @@ h3, p{
       new mapboxgl.Marker(el)
         .setLngLat(marker.geometry.coordinates)
         .addTo(map);
-        // .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-        // .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>'))
     });
     
     $(".marker").on('click', function(){
-          console.log($(this).val())
           window.location = window.location.origin + `/ActivityInformation?id=${$(this).val()}`;
-          
     });
   }
 
@@ -177,7 +173,6 @@ h3, p{
     
   }
 </script>
-
 
 <% if (loggedIn) { %>
   <script>
