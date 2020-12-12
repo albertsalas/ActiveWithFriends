@@ -54,6 +54,16 @@ h3, p{
   </div>
 </div>
 
+<% if (loggedIn) { %>
+  <script>
+     var loggedIn = `<%= loggedIn %>`     
+  </script>
+<% } else { %>
+  <script>
+    var loggedIn = false;    
+ </script>
+<% } %>
+
 
 <script>
   mapboxgl.accessToken = 'pk.eyJ1IjoicHJveGlpZSIsImEiOiJja2hjbWx5c2IwM3lkMnJzYnhoMnd4Ym0xIn0.wHtiEywv0rY_zEuDDxvEYQ';
@@ -147,13 +157,18 @@ h3, p{
           window.location = window.location.origin + `/ActivityInformation?id=${$(this).val()}`;
     });
   }
- 
-    map.on('click', function (e) {
 
+  if (loggedIn){
+    map.on('click', function (e) {
         $('.eventModal').addClass('is-active');
         $("#lng").val(e.lngLat.wrap().lng);
         $("#lat").val(e.lngLat.wrap().lat);
     }); 
+  } else {
+    map.on('click', function (e) {
+      $(".loginModal").addClass("is-active");
+    });
+  }
     
   }
 </script>
@@ -167,7 +182,6 @@ h3, p{
   </script>
   <%- include('./partials/chat.ejs') %>
 <% } %>
-
 
 
 <%- include('./partials/footer.ejs') %>

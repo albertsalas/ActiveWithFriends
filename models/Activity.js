@@ -38,7 +38,7 @@ Activity.checkJoined = (activity_id, user_id, result) => {
 }
 
 Activity.findUserEvents = (user_id , result) => {
-    query("SELECT JoinedActivities.activityID, Activity.title, Activity.description, Activity.time FROM JoinedActivities INNER JOIN Activity ON JoinedActivities.activityID = Activity.id WHERE JoinedActivities.userID = ?", user_id, (error, res) => {
+    query("SELECT JoinedActivities.activityID, Activity.title, Activity.description, DATE_FORMAT(Activity.time, '%h:%i %p - %d %b %Y') as time FROM JoinedActivities INNER JOIN Activity ON JoinedActivities.activityID = Activity.id WHERE JoinedActivities.userID = ?", user_id, (error, res) => {
         result(error, res);
     });
 }
