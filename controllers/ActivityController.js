@@ -49,8 +49,7 @@ exports.joinActivity = (req, res) => {
 
 exports.editActivity = (req, res) => {
     if(req.session.userId){
-        Activity.editActivity(req.session.userId, req.query.id, (error, data) => {
-            
+        Activity.editActivity(req.query.id, (error, data) => {
             if(req.session.userId == data[0].hostID){
                 res.render("editActivity", {data: data, title:""})
             }
@@ -68,10 +67,12 @@ exports.editActivity = (req, res) => {
 exports.create = (req, res) => {
     var activity = new Activity(req.body);
     if (!validRequest(activity, res)) return;
-
-    Activity.create(activity, (error, data) => {
-        response("activity", req.body, data, error, res);
-    });
+    if(req.session.userId){
+        Activity.create(activity, req.session.userId , (error, data) => {
+            response("activity", req.body, data, error, res);
+        });
+    }
+ 
 }
 
 exports.update = (req, res) => {
