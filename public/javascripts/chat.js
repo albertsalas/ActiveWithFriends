@@ -24,7 +24,7 @@ const startChat = (receiver) => {
                 addMessageToContainer(result.data[i].contents, outboundOrInbound);
             }
         },
-        done: toggleChatContainer()
+        done: toggleUsers()
     });
 }
 
@@ -84,7 +84,12 @@ $(document).ready(() => {
     });
 });
 
-const toggleChatContainer = () => {
+const toggleUsers = () => {
     $(".activeChat").toggle();
     $(".userList").toggle();
+}
+
+const toggleChatContainer = () => {
+    $("#chatContainer").toggle();
+    $("#bubble").toggle();
 }
