@@ -12,6 +12,39 @@ $nav: 100;
 $navHeight: 64px;
 
 $trans: 0.3s ease;
+#chatContainer{
+  display: none;
+}
+
+#bubble {
+  position: sticky;
+  width: 150px;
+  height: 50px;
+  padding: 10px;
+  background: #2cbbb7;
+  -webkit-border-radius: 44px;
+  -moz-border-radius: 44px;
+  bottom: 5%;
+  border-radius: 44px;
+  left: 85%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+#bubble:after {
+  content: '';
+  position: absolute;
+  border-style: solid;
+  border-width: 16px 17px 0;
+  border-color: #2cbbb7 transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  bottom: -16px;
+  left: 79px;
+
+}
 
 #messages {
   overflow: scroll;
@@ -47,6 +80,9 @@ $trans: 0.3s ease;
   color: $white;
   text-align: center;
   font-weight: 100;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .wrapper {
@@ -59,7 +95,7 @@ $trans: 0.3s ease;
   //left: 50%;
   transform: translateX(-50%);
   bottom: 0;
-  left: 25%;
+  left: 75%;
 
   box-shadow: 0px 3px 3px 0px rgba(50, 50, 50, 0.5);
 
