@@ -79,7 +79,7 @@ Activity.joinActivity = (user_id, activity_id , result) => {
 
 Activity.editActivity = (activity_id , result) => {
     
-    query("SELECT id, title, description, lng, lat, hostID, DATE_FORMAT(time, '%Y-%m-%dT%h:%i') as time FROM Activity WHERE id = ?", [activity_id], (error, res) => {
+    query("SELECT *, DATE_FORMAT(time, '%Y-%m-%dT%h:%i') as time FROM Activity WHERE id = ?", [activity_id], (error, res) => {
         result(error, res);
     });
 }
