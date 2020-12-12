@@ -75,10 +75,14 @@
     $(".delete").on('click', function(){
         $(".signupModal").removeClass("is-active");
     });
+    if($(".signupModal").hasClass("is-active")){
+
+    }
     
     $(".modal-background").click(function() {
         $(".signupModal").removeClass("is-active");
     });
+
 
 
     $("#u").on('change', function(){
