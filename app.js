@@ -17,6 +17,8 @@ var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var profileRouter = require('./routes/profile');
 var activityinfoRouter = require('./routes/activityinfo');
+var editRouter = require('./routes/edit');
+
 var app = express();
 
 // view engine setup
@@ -68,5 +70,6 @@ app.use('/login', loginRouter);
 app.use('/logout', logoutRouter);
 app.use('/profile', profileRouter);
 app.use('/ActivityInformation', activityinfoRouter);
+app.use('/edit', editRouter);
 
 module.exports = app;

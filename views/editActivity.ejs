@@ -1,0 +1,70 @@
+
+<%- include('./partials/header.ejs') %>
+ 
+
+<div class="hero is-primary" >
+  <%- include('./partials/nav.ejs')  %> 
+  <div class="hero-body" style="background-color: rgb(21, 132, 121);">
+      <div class="container" style="text-align: center;">
+          <h1 class="title">
+            <%= title %> 
+          </h1>
+      </div>
+  </div>
+
+    
+</div>
+
+<br>
+
+<div class="card" style="width: 50rem; margin: 0 auto">
+  <header class="card-header">
+    <p class="card-header-title is-centered" style="color: rgb(21, 132, 121);">
+      <input type="text" value="<%= data[0].title %>">
+    </p>
+  </header>
+  <div class="card-content">
+    <div class="content">
+        <textarea name="" id="" cols="80" rows="4"><%= data[0].description %></textarea>
+      <br>
+        <input type="datetime-local" name="" id="" value="<%= data[0].time %>">
+
+      <!-- 11:09 PM - 1 Jan 2016 -->
+    </div>
+  </div>
+  <footer class="card-footer">
+    <div href="#" class="card-footer-item"><button class="button is-primary" id="saveActivity" value="0">Save</button></div>
+  </footer>
+</div>
+
+
+<script>
+//   $("#joinActivity").click(test) 
+//   async function test(){ 
+//     let s = await (await fetch(`${window.location.origin}/ActivityInformation/join?id=<%= data[0].id %>`)).json();
+
+//     $("#joinActivity").html(s.joined ? `Join` : `Leave`)
+    
+//   }
+  $("#saveActivity").on('click', function() {
+    $.ajax({
+
+    })
+  });
+</script>
+
+
+<% if (loggedIn) { %>
+   
+  <script>
+    var username = '<%- username %>'
+    var userId = `<%- userId %>`
+
+    console.log(username, " + ", userId);
+  </script>
+  <%- include('./partials/chat.ejs') %>
+<% } %>
+
+
+
+<%- include('./partials/footer.ejs') %>

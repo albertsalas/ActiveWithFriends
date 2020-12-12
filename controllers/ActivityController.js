@@ -40,6 +40,24 @@ exports.joinActivity = (req, res) => {
     });
 }
 
+exports.editActivity = (req, res) => {
+    if(req.session.userId){
+        Activity.editActivity(req.session.userId, req.query.id, (error, data) => {
+            
+            if(req.session.userId == data[0].hostID){
+                res.render("editActivity", {data: data, title:""})
+            }
+            else{
+                res.redirect("/");
+            }
+        });
+    }
+    else{
+        res.redirect("/");
+    }
+ 
+}
+
 exports.create = (req, res) => {
     var activity = new Activity(req.body);
     if (!validRequest(activity, res)) return;

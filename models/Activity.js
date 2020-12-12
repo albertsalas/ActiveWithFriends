@@ -78,4 +78,14 @@ Activity.joinActivity = (user_id, activity_id , result) => {
     });
 }
 
+Activity.editActivity = (user_id, activity_id , result) => {
+    
+        query("SELECT id, title, description, lng, lat, hostID, DATE_FORMAT(time, '%Y-%m-%dT%h:%i') as time FROM Activity WHERE id = ? AND hostID = ? ", [activity_id, user_id], (error, res) => {
+
+            result(error, res);
+        });
+    
+
+}
+
 module.exports = Activity;

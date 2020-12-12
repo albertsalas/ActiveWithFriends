@@ -41,8 +41,10 @@
       <div href="#" class="card-footer-item"><button class="button is-primary" id="joinActivity" value="0">Leave</button></div>
     <% } %>
     <% if (host) { %>
-      <div href="#" class="card-footer-item"><button class="button is-primary" id="editActivity" value="0">Edit</button></div>
-      <div href="#" class="card-footer-item"><button class="button is-primary" id="deleteActivity" value="0">Delete</button></div>
+      <div class="card-footer-item">
+        <a href="edit?id=<%= data[0].id %>"><button class="button is-primary" id="editActivity" value="0">Edit</button></a>
+      </div>
+      <div class="card-footer-item"><button class="button is-primary" id="deleteActivity" value="0">Delete</button></div>
     <% } %>
   </footer>
 </div>
@@ -56,6 +58,7 @@
     $("#joinActivity").html(s.joined ? `Join` : `Leave`)
     
   }
+
 </script>
 
 
