@@ -26,13 +26,14 @@
         <div class="field">
           <div class="control">
             <input class="input is-primary" type="datetime-local" placeholder="date" id="d" style="width: 13rem;">
+            <span class="error"><p id="time_error" style = "color: red;"></p></span>
           </div>
         </div>
         <div class="columns is-centered is-mobile">
             <button class="button is-primary" id="addEvent" value=""><strong>Add Event</strong></button>
         </div>
-        <input type="text" hidden value="" id="lng">
-        <input type="text" hidden value="" id="lat">
+        Longitude: <input type="text" hidden value="" id="lng">
+        Latitude: <input type="text" hidden value="" id="lat">
 
       </section>
    
@@ -53,7 +54,7 @@
     $("#cancelEvent").click(function() {
         $(".eventModal").removeClass("is-active");
     });
-
+    
     //add event 
     $("#addEvent").on('click', function(){
       let t = $("#title").val();
@@ -62,8 +63,15 @@
       let lat = $("#lat").val();
       let d = $("#d").val();
 
-      finalizeEvent(t, desc, lng, lat, d);
-      $(".eventModal").removeClass("is-active");
+      if($("#d").val()){
+        finalizeEvent(t, desc, lng, lat, d);
+        $(".eventModal").removeClass("is-active");
+      } else {
+        let timeError = "Please enter a date for the event to take place";
+        $("#time_error").html(timeError);
+        submit = false;
+      }
+      
     });
 
     //function for adding event to database
