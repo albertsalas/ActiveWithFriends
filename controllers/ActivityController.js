@@ -15,17 +15,54 @@ exports.find = (req, res) => {
 }
 
 exports.findEvent = (req, res) => {
-    Activity.findEvent(req.params.id, (error, data) => {
+    Activity.findEvent(req.query.id, (error, data) => {
         //response("activity", req.params, data, error, res);
-        res.render("eventInfo", {data: data, title:"Event Information"});
+        Activity.checkJoined(req.query.id, req.session.userId, (error, joined) => {
+            let check = (joined.length > 0) ? true : false;
+            let host = (data[0].hostID == req.session.userId) ? true : false;
+            res.render("eventInfo", {data: data, title:"Event Information", joined: check, host:host});
+        });
+        
     });
 }
 
+
 exports.findUserEvents = (req, res) => {
-    Activity.findUserEvents(req.session.userId, (error, data) => {
-        //response("activity", req.params, data, error, res);
-        res.render("profile", {data: data, title:"Profile"});
+    if(req.session.userId){
+        Activity.findUserEvents(req.session.userId, (error, data) => {
+            //response("activity", req.params, data, error, res);
+            res.render("profile", {data: data, title:"Profile"});
+        });
+    }
+    else{
+        res.redirect("/");
+    }
+}
+    
+
+exports.joinActivity = (req, res) => {
+    Activity.joinActivity(req.session.userId, req.query.id, (error, data) => {
+        let check = (data.length > 0) ? true : false;
+        res.json({data: data, joined: check})
     });
+}
+
+exports.editActivity = (req, res) => {
+    if(req.session.userId){
+        Activity.editActivity(req.session.userId, req.query.id, (error, data) => {
+            
+            if(req.session.userId == data[0].hostID){
+                res.render("editActivity", {data: data, title:""})
+            }
+            else{
+                res.redirect("/");
+            }
+        });
+    }
+    else{
+        res.redirect("/");
+    }
+ 
 }
 
 exports.create = (req, res) => {

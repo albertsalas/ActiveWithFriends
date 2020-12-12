@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/login.css">
+
+  <div id="id01" class="modal1">
+    <form class="modal-content animate" action="./login" method="POST">
+      <div class="imgcontainer">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <!-- <img src="file/location" alt="Avatar" class="avatar"> -->
+      </div>
+      <div class="container">
+        <label for="username"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="username" required>
+        <label for="password"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="password" required>
+        <!-- <button type="submit" class="button1">Login</button> -->
+        <button class="button is-dark button1" style="background-color:#a1e0a9;" type="submit">
+          Login
+        </button>
+        <label style="color: black;">
+          <input type="checkbox" checked="checked" name="remember" > Remember me
+        </label>
+      </div>
+      <div class="container" style="background-color:#f1f1f1">
+        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn button1">Cancel</button>
+        <span class="password" style="color: black;">Forgot <a href="#">password?</a></span>
+      </div>
+    </form>
+  </div>

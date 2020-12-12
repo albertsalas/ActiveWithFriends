@@ -12,17 +12,17 @@
       }
 
       /* Set a style for all buttons */
-      button {
+      .button1 {
         background-color: #4CAF50;
         color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
+        /* padding: 14px 20px; */
+        /* margin: 8px 0; */
         border: none;
         cursor: pointer;
-        width: 100%;
+        /* width: 100%; */
       }
 
-      button:hover {
+      .button1:hover {
         opacity: 0.8;
       }
 
@@ -55,7 +55,7 @@
       }
 
       /* The Modal (background) */
-      .modal {
+      .modal1 {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */

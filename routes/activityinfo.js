@@ -4,10 +4,13 @@ const activities = require("../controllers/ActivityController");
 
 
 
-router.get('/', async (req,res) => {
 
-    res.render('discover', { title: 'Discover' });
-});
+router.get('/', activities.findEvent);
+router.get('/join', activities.joinActivity);
+
+
+
+
 
 
 module.exports = router;
