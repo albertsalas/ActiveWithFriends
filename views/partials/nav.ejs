@@ -44,11 +44,12 @@
           </a>
         </div>
       </div>
-  
-      <div class="navbar-end">
-        <div class="navbar-item">
-          <div class="buttons">
-            <% if (!loggedIn) { %>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <% if (loggedIn) { %>
             <a href = "/profile">
               <img src = "img/profile_icon.png">
             </a>
@@ -61,47 +62,13 @@
             <button class="button is-white is-outlined" id="register">
               <strong>Sign up</strong>
             </button>
-              <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">
-                <strong>Sign In</strong>
-              </button>
-              <div id="id01" class="modal">
-                <form class="modal-content animate" action="./login" method="POST">
-                  <div class="imgcontainer">
-                    <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-                    <!-- <img src="file/location" alt="Avatar" class="avatar"> -->
-                  </div>
-
-                  <div class="container">
-                    <label for="username"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required>
-
-                    <label for="password"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="password" required>
-
-                    <button type="submit">Login</button>
-                    <label>
-                      <input type="checkbox" checked="checked" name="remember"> Remember me
-                    </label>
-                  </div>
-
-                  <div class="container" style="background-color:#f1f1f1">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                    <span class="password">Forgot <a href="#">password?</a></span>
-                  </div>
-                </form>
-              </div>
-            </a>
-            <% } else { %>
-              <a href = "/profile">
-                <img src = "img/profile_icon.png">
-              </a>
-              <form action="/logout" method="POST">
-                <button class="button iswhite is-outlined" type="submit" id="logout">
-                  <strong>Logout</strong>
-                </button>
-              </form>
-            <% } %>
-          </div>
+            <button class="button is-dark button1" style="background-color:#a1e0a9;" id="login id01" onclick="document.getElementById('id01').style.display='block'">
+              <strong>Sign In</strong>
+            </button>
+            <!-- <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;" class="button1">
+              <strong>Sign In</strong>
+            </button> -->
+          <% } %>
         </div>
       </div>
     </div>
