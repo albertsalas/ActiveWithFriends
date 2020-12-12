@@ -25,6 +25,8 @@ router.post('/', function(req, res){
 				req.session.userId = data[0].id;
 				req.session.firstname = data[0].first_name;
 				req.session.lastname = data[0].last_name;
+				req.session.isAdmin = data[0].isAdmin;
+				console.log(data[0]);
 				res.redirect('/');
 				return;
 			} else { //Password is incorrect
