@@ -9,8 +9,6 @@ router.get('/', async (req,res) => {
     res.render('discover', { title: 'Discover' });
 });
 
-//router.get('/:id', activities.findUserEvents);
-
 router.get('/eventInfo/:id', activities.findEvent);
 
 

@@ -1,18 +1,51 @@
+<head>
+    <meta charset = "utf-8">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+    <link rel = "stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css">
+    <script src = "https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script>
+ </head>
+
 <%- include('./partials/header.ejs') %>
 <div class="hero is-primary">
     <%- include('./partials/nav.ejs')  %> 
 </div>
 
-<div class = "container" style="color: white;">
+
+
+<div class = "container has-text-black-bis">
     
-    <a id = "username" style="color: white;"></a>
+    <h1 id = "username" class="title">Title 1</h1>
+    <br>
 
-    <br><br>
-
-    <div>
+    <div class = "has-text-black-bis">
         Firstname <input type = "text" id = "fname" name = "fname" value = "x"> <br>
-        Lastname <input type = "text" id = "lname" name = "lname" value = "x">
+        Lastname <input type = "text" id = "lname" name = "lname" value = "x"> <br><br>
     </div>
+
+    <h1 class="title"> Activity History: </h1>
+
+    <div class="container">
+        <div class="row">
+            <% data.forEach(function(event, index) { %>
+                <div class="card">
+                    <a href="discover/eventInfo/<%= event.activityID %>">
+                        <div class="card-content">
+                            <div class="content">
+                                <h5><%= event.title %> <%= event.activityID %></h5>
+                            <br>
+                            <time datetime="2016-1-1"><%= event.time %></time>
+                            <p><%= event.description %> </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <br>
+            <% }); %>
+        </div>
+    </div>
+    
+
+    
 </div>
 
 <% if (loggedIn) { %>
