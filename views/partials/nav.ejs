@@ -23,6 +23,12 @@
         Discover
       </a>
 
+      <% if (isAdmin) { %>
+        <a class="navbar-item" href="/admin">
+          Admin
+        </a>
+      <% } %>
+
       <div class="navbar-item has-dropdown is-hoverable ">
         <a class="navbar-link">
           More
